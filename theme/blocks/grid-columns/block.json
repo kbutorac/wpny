@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/grid-columns",
+		"title"      : "Grid Columns",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "button",
+		"apiVersion" : 2,
+		"keywords"   : ["grid"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "grid-columns.php"
+		},
+		"styles"  : [],
+		"supports": {
+			"spacing": {
+			"margin": true,
+			"padding": false
+				},
+				"align"       : true,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

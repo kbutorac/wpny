@@ -1,0 +1,139 @@
+{
+    "key": "group_5bad8249778fd",
+    "title": "Video Selection",
+    "fields": [
+        {
+            "key": "field_5bad83a5d2048",
+            "label": "Videos",
+            "name": "videos",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Video",
+            "sub_fields": [
+                {
+                    "key": "field_5bad8277ef180",
+                    "label": "Video",
+                    "name": "videos",
+                    "aria-label": "",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "video"
+                    ],
+                    "taxonomy": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_5bad83a5d2048"
+                },
+                {
+                    "key": "field_5bad835b18bc5",
+                    "label": "Add to Slider",
+                    "name": "add_to_slider",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_5bad83a5d2048"
+                },
+                {
+                    "key": "field_5bad833818bc4",
+                    "label": "Slider Position",
+                    "name": "slider_position",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5bad835b18bc5",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": "",
+                    "parent_repeater": "field_5bad83a5d2048"
+                }
+            ],
+            "rows_per_page": 20
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "system"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "system_product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1720614061
+}

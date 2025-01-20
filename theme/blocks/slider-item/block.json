@@ -1,0 +1,27 @@
+{
+		"name"       : "wpny/slider-item",
+		"title"      : "Slider Item",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "slides",
+		"apiVersion" : 2,
+		"keywords"   : ["tabs"],
+		"parent"     : ["wpny/slider-container"], 
+		"acf"        : {
+			"mode"          : "preview",
+			"renderTemplate": "slider-inner.php"
+		},
+		"styles"  : [],
+		"supports": {
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"customClassName"	: true,
+				"jsx" :true,
+				"multiple" : true
+		},
+		"attributes": {
+		}
+}

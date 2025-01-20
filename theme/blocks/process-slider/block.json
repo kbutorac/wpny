@@ -1,0 +1,30 @@
+{
+		"name"       : "wpny/process-slider",
+		"title"      : "Process Slider",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "process-slider-script",
+		"category"   : "wpny",
+		"icon"       : "fullscreen-alt",
+		"apiVersion" : 2,
+		"keywords"   : ["process", "slider"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "process-slider.php"
+		},
+		"styles"  : [],
+		"supports": {
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

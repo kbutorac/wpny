@@ -1,0 +1,220 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"typography": {
+			"fontSizes": [
+				{
+					"name": "FS-1 (14px)",
+					"size": "14px",
+					"slug": "font-size-1"
+				},
+				{
+					"name": "FS-2 (16px)",
+					"size": "16px",
+					"slug": "font-size-2"
+				},
+				{
+					"name": "FS-3 (18px)",
+					"size": "18px",
+					"slug": "font-size-3"
+				},
+				{
+					"name": "FS-4 (24px)",
+					"size": "24px",
+					"slug": "font-size-4"
+				},
+				{
+					"name": "FS-5 (18-24px)",
+					"size": "clamp(18px, calc(1.875rem + ((1vw - 6px) * 1.0563)), 24px)",
+					"slug": "font-size-5"
+				},
+				{
+					"name": "FS-6 (20-30px)",
+					"size": "clamp(20px, calc(2rem + ((1vw - 6px) * 2.5)), 30px)",
+					"slug": "font-size-6"
+				},
+				{
+					"name": "FS-7 (32-52px)",
+					"size": "clamp(32px, calc(2.5rem + ((1vw - 6px) * 3.5)), 52px)",
+					"slug": "font-size-7"
+				},
+				{
+					"name": "FS-8 (64-148px)",
+					"size": "clamp(64px, calc(3rem + ((1vw - 6px) * 5)), 148px)",
+					"slug": "font-size-8"
+				}
+			]
+		},
+		"color": {
+			"customGradient": true,
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{
+					"name": "Body text",
+					"slug": "body-text",
+					"color": "#0A0A0A"
+				},
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#000000"
+				},
+				{
+					"name": "Accent",
+					"slug": "accent",
+					"color": "#2DD8C0"
+				},
+				{
+					"name": "Light Blue",
+					"slug": "light-blue",
+					"color": "#E4F9F8"
+				},
+				 {
+					"name": "Dark",
+					"slug": "dark",
+					"color": "#333333"
+				},
+				{
+					"name": "White",
+					"slug": "white",
+					"color": "#ffffff"
+				},
+				{
+					"name": "Gray",
+					"slug": "gray",
+					"color": "#D1D1D1"
+				},
+				{
+					"name": "Medium Gray",
+					"slug": "medium-gray",
+					"color": "#929292"
+				},
+				{
+					"name": "Black RGBA",
+					"slug": "black-rgba",
+					"color": "rgba(0, 0, 0, 0.5)"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "960px",
+			"wideSize": "1280px"
+		},
+		"spacing": {
+			"blockGap": true,
+			"margin": true,
+			"padding": true,
+			"spacingSizes": [
+				{
+					"name": "Base 8px",
+					"size": "8px",
+					"slug": "base"
+				},
+				{
+					"name": "Tiny 12px",
+					"size": "12px",
+					"slug": "tiny"
+				},
+				{
+					"name": "xSmall 24px",
+					"size": "24px",
+					"slug": "x-small"
+				},
+				{
+					"name": "Small 24-48px",
+					"size": "clamp(24px, 4vw, 48px)",
+					"slug": "small"
+				},
+				{
+					"name": "Medium 32px",
+					"size": "32px",
+					"slug": "medium-fixed"
+				},
+				{
+					"name": "Medium 32-64px",
+					"size": "clamp(32px, 6vw, 64px)",
+					"slug": "medium"
+				},
+				{
+					"name": "Large 40-80px",
+					"size": "clamp(40px, 8vw, 80px)",
+					"slug": "large"
+				},
+				{
+					"name": "xLarge 50-100px",
+					"size": "clamp(50px, 10vw, 100px)",
+					"slug": "x-large"
+				}
+			]
+		},
+		"blocks": {
+			"core/group":{
+				"background": {
+					"backgroundImage": true,
+					"backgroundSize": true
+				}
+			},
+			"core/columns": {
+				"spacing": {
+					"padding": true,
+					"margin": true,
+					"blockGap": true
+				}
+			},
+			"core/cover": {
+
+			},
+			"core/paragraph": {
+				"typography": {
+					"fontSizes": [
+						{
+							"slug": "small",
+							"size": "14px",
+							"name": "Small"
+						},
+						{
+							"slug": "medium",
+							"size": "18px",
+							"name": "Medium"
+						},
+						{
+							"slug": "large",
+							"size": "20px",
+							"name": "Large"
+						}
+					]
+				}
+			},
+			"core/button": {
+				"border": {
+					
+					"radius": false
+				}
+			}
+		}
+	},
+	"styles": {
+		"elements": {
+			"button": {
+				"color": {
+					"background": "#2DD8C0",
+					"text": "#000000"
+				},
+				":hover":{
+					 "color": {
+						"background": "#000000",
+						"text": "#ffffff"
+					}
+				}
+			}
+		}
+	}
+}

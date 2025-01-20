@@ -1,0 +1,74 @@
+{
+    "key": "group_660fc9163d6a8",
+    "title": "Block: Case Study List",
+    "fields": [
+        {
+            "key": "field_660fc91671c5b",
+            "label": "Select Case Studies",
+            "name": "select",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "If left empty all Case Studies will display",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "case-study"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_660fcc275b7de",
+            "label": "Display Excerpts",
+            "name": "display_excerpts",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "wpny\/cs-list"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1712311349
+}

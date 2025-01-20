@@ -1,0 +1,10 @@
+.block-hero-large h1 span{
+	display: block;
+	padding-left: 30%;
+}
+
+@media only screen and (min-width: 1024px) {
+	.block-hero-large h1{
+		font-size: 150px;
+	}
+}

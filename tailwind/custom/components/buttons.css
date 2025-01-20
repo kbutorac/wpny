@@ -1,0 +1,31 @@
+.btn {
+	&.btn--primary {
+		@apply bg-accent hover:bg-[#83E3DE] text-black hover:text-black  rounded-[40px] py-3.5 px-8 inline-flex justify-center items-center text-center leading-none text-[15px] transition-all;
+
+		&.flex {
+			display: flex !important;
+			width: 100%;
+		}
+	}
+
+	&.btn--secondary {
+		@apply inline-flex items-center gap-x-6 text-[22px] md:text-[30px] hover:gap-x-8 transition-all;
+		span{
+			@apply transition-all;
+		}
+		&:hover{
+			span{
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&.btn--tertiary {
+		@apply bg-white hover:bg-black text-black hover:text-white  rounded-[40px] py-3.5 px-8 inline-flex justify-center items-center text-center leading-none text-[15px] transition-all;
+
+		&.flex {
+			display: flex !important;
+			width: 100%;
+		}
+	}
+}

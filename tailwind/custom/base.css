@@ -1,0 +1,176 @@
+/**
+ * Custom styles to immediately follow Tailwind’s `base` layer
+ *
+ * “Add things like base typography styles [or] opinionated global resets.”
+ *
+ * — from https://tailwindcss.com/docs/plugins#adding-base-styles
+ */
+
+body {
+	font-family: 'Eina01';
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+#content {
+	overflow: hidden;
+}
+
+
+article>*:not(.entry-content):not(.alignwide),
+.entry-content>* {
+	@apply mx-auto max-w-content;
+}
+
+.wp-block-columns.has-background,
+.wp-block-group {
+	padding: 1.25em 20px;
+}
+
+.entry-content>.wp-block-columns {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+
+.alignfull {
+	margin-left: calc(-50vw + 50%) !important;
+	margin-right: calc(-50vw + 50%) !important;
+	max-width: 100vw !important;
+}
+
+.has-scrollbar .alignfull {
+	margin-left: calc(-50vw + 50% + (var(--scrollbar-width) / 2)) !important;
+	margin-right: calc(-50vw + 50% + (var(--scrollbar-width) / 2)) !important;
+	max-width: calc(100vw - var(--scrollbar-width)) !important;
+}
+
+.editor-styles-wrapper .alignfull {
+	max-width: 100% !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+.editor-styles-wrapper .components-resizable-box__container{
+max-width: 100%!important;
+}
+.editor-styles-wrapper h1.wp-block{
+	font-size: 40px;
+}
+strong {
+	font-weight: 500;
+}
+
+hr{
+	background-color: theme('colors.gray');
+	color: theme('colors.gray');
+}
+
+.entry-content {
+
+	>p,
+	>.wp-block-heading,
+	>.wp-block-image {
+		margin-top: 1.25rem;
+		margin-bottom: 1.25rem;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		>.wp-block:not(.alignfull):not(.alignwide) {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+}
+
+.wp-block-column {
+	>*:first-child {
+		margin-top: 0 !important
+	}
+
+	>*:last-child {
+		margin-top: 0 !important
+	}
+
+	>p,
+	>.wp-block-heading,
+	>.wp-block-image {
+		margin-top: 1.25rem;
+		margin-bottom: 1.25rem;
+	}
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: 1.2;
+	color: theme("colors.dark");
+}
+
+h2,
+h3,
+h4 {
+	font-weight: 500;
+}
+
+h1 {
+	font-size: var(--wp--preset--font-size--font-size-8);
+}
+
+h2 {
+	font-size: var(--wp--preset--font-size--font-size-7);
+}
+
+h3 {
+	font-size: var(--wp--preset--font-size--font-size-6);
+}
+
+h4 {
+	font-size: var(--wp--preset--font-size--font-size-5);
+}
+
+h5 {
+	font-size: var(--wp--preset--font-size--font-size-2);
+	text-transform: uppercase;
+	letter-spacing:1.69px;
+	font-weight: 600;
+}
+
+h6 {
+	font-size: var(--wp--preset--font-size--font-size-2);
+}
+
+.wp-block-separator{
+	border-top: 1px solid;
+}
+
+.wp-block-image{
+	position: relative;
+	.wp-element-caption{
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background: rgba(0,0,0,.5);
+		color: #fff;
+		padding: 8px 24px;
+		margin: 0;
+	}
+}
+strong{
+	font-weight: 600;
+}
+
+ul.wp-block {
+
+	li {
+		@apply list-disc list-outside marker:text-accent text-[15px] mb-6 last:mb-0;
+		margin-left: 1em !important;
+		&::marker {
+			font-size: 26px;
+		}
+		strong{
+			font-size: 16px;
+		}
+	}
+}

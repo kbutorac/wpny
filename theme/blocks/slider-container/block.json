@@ -1,0 +1,32 @@
+{
+		"name"       : "wpny/slider-container",
+		"title"      : "Slider Container",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "slider-script",
+		"category"   : "wpny",
+		"icon"       : "slides",
+		"apiVersion" : 2,
+		"keywords"   : [],
+		"acf"        : {
+	"mode"          : "preview",
+	"renderTemplate": "slider-container.php"
+		},
+		"styles"  : [],
+		"supports": {
+				"align"       : true,
+				"anchor"      : true,
+				"alignText" : false,
+				"fullHeight": false,
+				"alignContent": true,
+				"jsx"         : true,
+				"multiple" : true,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				}
+		},
+		"attributes": {
+		}
+}

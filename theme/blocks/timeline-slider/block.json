@@ -1,0 +1,30 @@
+{
+		"name"       : "wpny/timeline-slider",
+		"title"      : "Timeline Slider",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "timeline-slider-script",
+		"category"   : "wpny",
+		"icon"       : "fullscreen-alt",
+		"apiVersion" : 2,
+		"keywords"   : ["timeline", "slider"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "timeline-slider.php"
+		},
+		"styles"  : [],
+		"supports": {
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

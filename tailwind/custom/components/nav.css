@@ -1,0 +1,212 @@
+.admin-bar .site-header {
+	top: var(--wp-admin--admin-bar--height) !important;
+}
+
+.footer-menu {
+	a {
+		@apply hover:text-accent transition-colors;
+	}
+}
+
+.menu .menu-item-has-children {
+	>a svg {
+		width: 12px;
+		height: 12px;
+
+	}
+}
+
+
+
+
+
+#mobile-menu {
+	>li {
+		width: 100%;
+		@apply border-b mb-2 py-2 border-[#D1D1D1];
+
+		>a {
+			@apply text-[16px] uppercase font-bold mb-1 tracking-wide;
+		}
+	}
+
+	.menu-item-has-children {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		flex-direction: row-reverse;
+		align-items: center;
+
+		a {
+			flex: 1;
+			@apply text-[16px];
+		}
+
+		li {
+			@apply border-b border-[#F5F6FF] my-1 last:border-none;
+		}
+
+		>ul>li {
+			@apply my-1 py-1;
+		}
+	}
+
+	ul.sub-menu {
+		display: none;
+		flex-direction: column;
+		width: 100%;
+		padding: 0;
+		margin-bottom: 0;
+
+		li {
+			@apply last:border-none;
+		}
+
+		&.open {
+			display: flex;
+		}
+	}
+
+	.mobile-menu-toggle {
+		width: 20px;
+		height: 20px;
+		display: flex;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='tve-dropdown-icon-up' viewBox='0 0 320 512'%3E%3Cpath fill='%23692A6D' d='M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z'%3E%3C/path%3E%3C/svg%3E");
+		background-size: 12px;
+		background-repeat: no-repeat;
+		background-position: center;
+		flex: 0 0 auto;
+
+		&.open {
+			transform: scaleY(-1);
+		}
+	}
+}
+
+
+#primary-menu {
+	>li:hover>a {
+		@apply bg-accent text-black;
+	}
+	>li>a {
+		font-weight: 600;
+		font-size: 16px;
+		padding-left: 12px;
+		padding-right: 12px;
+		padding: 8px 12px;
+		border-radius: 3px;
+
+		@media only screen and (max-width: 1100px) {
+			font-size: 14px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	.menu-item-has-children:hover {
+		.mega-menu-content {
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
+}
+#primary-menu >li.top-level > a{
+	line-height: 64px;
+}
+
+.mega-menu-content {
+	padding: 12px 0;
+	width: 100%;
+	max-width: 1320px;
+	background-color: #F8F8F8;
+	pointer-events: none;
+	-webkit-transition: all 300ms ease;
+	-moz-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease;
+	-webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.1);
+
+	&::before {
+		content: "";
+		width: 200%;
+		left: -50%;
+		position: absolute;
+		top: 0;
+		height: 100%;
+		z-index: 0;
+		background-color: #F8F8F8;
+	}
+
+	>* {
+		position: relative;
+		z-index: 1;
+	}
+
+	>*:last-child {
+		margin-bottom: 0;
+	}
+
+	.wp-block-navigation {
+		.wp-block-navigation__container {
+			@apply gap-y-2;
+			li{
+				line-height: 1.3;
+			}
+			a {
+				position: relative;
+				display: inline-flex;
+				align-items: center;
+				grid-gap: 8px;
+				-webkit-transition: all 300ms ease;
+				-moz-transition: all 300ms ease;
+				-ms-transition: all 300ms ease;
+				-o-transition: all 300ms ease;
+				transition: all 300ms ease;
+
+				&::after {
+					content: "";
+					background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='6' viewBox='0 0 22 6' fill='none'%3E%3Cpath d='M22 3.04492L17 0.158172L17 5.93167L22 3.04492ZM-4.37114e-08 3.54492L17.5 3.54492L17.5 2.54492L4.37114e-08 2.54492L-4.37114e-08 3.54492Z' fill='%2303AB9D'/%3E%3C/svg%3E");
+					width: 22px;
+					height: 6px;
+					background-size: 100%;
+					opacity: 0;
+					-webkit-transition: all 300ms ease;
+					-moz-transition: all 300ms ease;
+					-ms-transition: all 300ms ease;
+					-o-transition: all 300ms ease;
+					transition: all 300ms ease;
+				}
+
+				&:hover {
+					color: theme('colors.accent');
+					grid-gap: 12px;
+					font-weight: 600;
+					&::after {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	.menu .menu-item-has-children:not(.mega){
+		position: relative;
+
+		&:hover>ul.sub-menu {
+			@apply pointer-events-auto translate-y-0 opacity-100;
+		}
+
+		ul.sub-menu {
+			@apply pointer-events-none absolute left-0 z-10 min-w-[240px] text-dark gap-y-3 rounded bg-white px-6 pb-4 pt-4 opacity-0 shadow-xl transition-all duration-200 ease-in-out;
+			top: 100%;
+			a{
+				@apply hover:text-accent;
+			}
+		}
+	}
+}

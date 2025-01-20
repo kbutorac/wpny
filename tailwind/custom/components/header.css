@@ -1,0 +1,14 @@
+#site-header:not(.scroll){
+	>.container:not(.top-links){
+		border-bottom: 1px solid rgba(255,255,255, .8);
+	}
+	&.site-header--dark >.container:not(.top-links){
+		border-bottom: 1px solid #CBCBCB;
+	}
+	
+	.top-links{
+		a:hover{
+			color: #2DD8C0
+		}
+	}
+}

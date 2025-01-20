@@ -1,0 +1,30 @@
+{
+		"name"       : "wpny/project-filter",
+		"title"      : "Project Filter",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "welcome-write-blog",
+		"apiVersion" : 2,
+		"keywords"   : ["project"],
+		"acf"        : {
+	"mode"          : "edit",
+	"renderTemplate": "project-filter.php"
+		},
+		"styles"  : [],
+		"supports": {
+				"align"       : true,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

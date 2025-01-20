@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/cta",
+		"title"      : "CTA",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "align-full-width",
+		"apiVersion" : 2,
+		"keywords"   : ["cta"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "cta.php"
+		},
+		"styles"  : [],
+		"supports": {
+				 "spacing": {
+					"margin": [ "top", "bottom" ],
+					"padding": false
+				},
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

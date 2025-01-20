@@ -1,0 +1,109 @@
+/**
+ * Custom styles to immediately follow Tailwind’s `utilities` layer
+ *
+ * Add your own utility classes to this theme. Complex utility classes should
+ * be added using Tailwind’s plugin system:
+ *
+ * https://tailwindcss.com/docs/plugins#adding-utilities
+ */
+
+.fc-reset>*:first-child {
+	margin-top: 0 !important
+}
+.lc-reset>*:last-child {
+	margin-bottom: 0 !important
+}
+
+.breakout-shadow::after{
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		right: 50%;
+		left: 50%;
+		display: block;
+		width: 100vw;
+		height: 100%;
+		margin-right: -50vw;
+		margin-left: -50vw;
+		content: '';
+	border-top: 1px solid #EAEDFB;
+	border-bottom: 1px solid #EAEDFB;
+}
+.breakout-bg::before{
+	position: absolute;
+		z-index: -1;
+		top: 0;
+		right: 50%;
+		left: 50%;
+		display: block;
+		width: 100vw;
+		height: 100%;
+		margin-right: -50vw;
+		margin-left: -50vw;
+		content: '';
+		background-color: inherit;
+		background-size: cover;
+		background-repeat: no-repeat
+}
+
+/* Animations*/
+body.animation-ready .animate-down {
+	opacity: 0;
+	transform: translateY(-50px);
+	transition: all 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body.animation-ready .animate-down.on {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+body.animation-ready .animate-fade {
+	opacity: 0;
+	transition: all 600ms;
+}
+
+body.animation-ready .animate-fade.on {
+	opacity: 1;
+}
+
+body.animation-ready .animate-up {
+	opacity: 0;
+	transform: translateY(50px);
+	transition: all 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body.animation-ready .animate-up>.animate-up {
+	transition: all 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body.animation-ready .animate-up~.animate-up {
+	transition: all 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body.animation-ready .animate-up.on {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+body.animation-ready .animate-right {
+	opacity: 0;
+	transform: translateX(-50px);
+	transition: all 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body.animation-ready .animate-right.on {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+body.animation-ready .animate-left {
+	opacity: 0;
+	transform: translateX(50px);
+	transition: all 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body.animation-ready .animate-left.on {
+	opacity: 1;
+	transform: translateX(0px);
+}

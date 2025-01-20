@@ -1,0 +1,57 @@
+/**
+ * Custom `@font-face` rules
+ *
+ * These will be added immediately before Tailwind’s `base` layer.
+ */
+
+@font-face {
+	font-family: 'Eina01';
+	src: url('assets/fonts/Eina01-Regular.eot');
+	src: url('assets/fonts/Eina01-Regular.eot?#iefix') format('embedded-opentype'),
+			url('assets/fonts/Eina01-Regular.woff2') format('woff2'),
+			url('assets/fonts/Eina01-Regular.woff') format('woff'),
+			url('assets/fonts/Eina01-Regular.ttf') format('truetype'),
+			url('assets/fonts/Eina01-Regular.svg#Eina01-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eina01';
+	src: url('assets/fonts/Eina01-SemiBold.eot');
+	src: url('assets/fonts/Eina01-SemiBold.eot?#iefix') format('embedded-opentype'),
+			url('assets/fonts/Eina01-SemiBold.woff2') format('woff2'),
+			url('assets/fonts/Eina01-SemiBold.woff') format('woff'),
+			url('assets/fonts/Eina01-SemiBold.ttf') format('truetype'),
+			url('assets/fonts/Eina01-SemiBold.svg#Eina01-SemiBold') format('svg');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eina01';
+	src: url('assets/fonts/Eina02-Bold.eot');
+	src: url('assets/fonts/Eina02-Bold.eot?#iefix') format('embedded-opentype'),
+			url('assets/fonts/Eina02-Bold.woff2') format('woff2'),
+			url('assets/fonts/Eina02-Bold.woff') format('woff'),
+			url('assets/fonts/Eina02-Bold.ttf') format('truetype'),
+			url('assets/fonts/Eina02-Bold.svg#Eina02-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Eina01';
+	src: url('assets/fonts/Eina02-Light.eot');
+	src: url('assets/fonts/Eina02-Light.eot?#iefix') format('embedded-opentype'),
+			url('assets/fonts/Eina02-Light.woff2') format('woff2'),
+			url('assets/fonts/Eina02-Light.woff') format('woff'),
+			url('assets/fonts/Eina02-Light.ttf') format('truetype'),
+			url('assets/fonts/Eina02-Light.svg#Eina02-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}

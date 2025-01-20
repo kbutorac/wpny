@@ -1,0 +1,7 @@
+.accordion-item.active .accordion-icon {
+	transform: rotate(180deg);
+}
+.accordion-item h4{
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}

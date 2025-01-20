@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/button",
+		"title"      : "Button",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "button",
+		"apiVersion" : 2,
+		"keywords"   : ["button"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "button.php"
+		},
+		"styles"  : [],
+		"supports": {
+			"spacing": {
+			"margin": true,
+			"padding": true
+				},
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

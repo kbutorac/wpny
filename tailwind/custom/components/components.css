@@ -1,0 +1,261 @@
+/**
+ * Post title styles
+ *
+ * These will be applied to all headings with a `page-title` or `entry-title`
+ * class on the frontend and to the post title in the block editor.
+ *
+ * The supplied styles are meant to match the default `h1` classes from
+ * Tailwind Typography.
+ */
+.page-title,
+.entry-title {
+	@apply max-w-content mx-auto mb-6 text-3xl font-extrabold text-neutral-900;
+}
+
+/**
+ * Layout styles for centered content areas
+ *
+ * If you are controlling the width of your content area with styles applied
+ * to its container, you can delete the following styles whose selectors begin
+ * with `.page-content >` and `.entry-content >`. For more details, please see
+ * the following:
+ *
+ * https://make.wordpress.org/core/2021/06/29/on-layout-and-content-width-in-wordpress-5-8/
+ */
+.page-content>*,
+.entry-content>* {
+	/* Content width from the `theme.json` file */
+	@apply max-w-content mx-auto;
+}
+
+.entry-content>.alignwide {
+	/* Wide width from the `theme.json` file */
+	@apply max-w-wide;
+	/* @media only screen and (min-width: 1280px) {
+		margin-left: -160px!important;
+		margin-right: -160px!important;
+	} */
+}
+
+.entry-content {
+	>.alignwide {
+		@media only screen and (min-width: 1320px) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+
+.entry-content>.alignfull {
+	@apply max-w-none;
+}
+
+.entry-content>.alignleft {
+	@apply float-left mr-8;
+}
+
+.entry-content>.alignright {
+	@apply float-right ml-8;
+}
+
+.wp-block-group .wp-block-group {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.wp-block-heading {
+	&.is-style-underline {
+		@apply font-bold tracking-[3px] text-[13px] border-b-2 border-accent inline-flex;
+	}
+
+	&.has-dots {
+		position: relative;
+
+		&.light {
+			&::before {
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42' fill='none'%3E%3Ccircle cx='21' cy='21' r='21' transform='rotate(90 21 21)' fill='%23102363' fill-opacity='0.1'/%3E%3Ccircle cx='21.0004' cy='21.0006' r='13.4615' transform='rotate(90 21.0004 21.0006)' fill='%23102363' fill-opacity='0.2'/%3E%3Ccircle cx='20.9988' cy='20.9992' r='5.92308' transform='rotate(90 20.9988 20.9992)' fill='%23102363' fill-opacity='0.34'/%3E%3C/svg%3E");
+			}
+		}
+
+		&::before {
+			content: '';
+			background-image: url("data:image/svg+xml,%3Csvg width='43' height='42' viewBox='0 0 43 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='21.2832' cy='21' r='21' transform='rotate(90 21.2832 21)' fill='white' fill-opacity='0.1'/%3E%3Ccircle cx='21.2836' cy='21.0001' r='13.4615' transform='rotate(90 21.2836 21.0001)' fill='white' fill-opacity='0.2'/%3E%3Ccircle cx='21.2825' cy='21' r='5.92308' transform='rotate(90 21.2825 21)' fill='white' fill-opacity='0.34'/%3E%3C/svg%3E%0A");
+			width: 43px;
+			height: 43px;
+			position: absolute;
+			left: -48px;
+			top: -8px;
+		}
+	}
+}
+
+.push-image-right {
+	.wp-block-image {
+		width: calc(100% + 40px);
+		margin-left: -20px;
+	}
+
+	@media only screen and (min-width: 768px) {
+		position: relative;
+
+		.wp-block-image {
+			position: absolute;
+			width: 50vw;
+			height: 100%;
+			left: 0;
+			top: 0;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+.wp-block-quote, .post-content blockquote {
+	padding-left: 80px;
+	position: relative;
+	margin-top: 60px;
+	margin-bottom: 60px;
+
+	@media only screen and (max-width:1000px) {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	&::before {
+		content: "";
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='49' height='38' viewBox='0 0 49 38' fill='none'%3E%3Cpath d='M37 37.25C30.25 37.25 25.875 32.125 25.875 24.75C25.875 14 34 4.375 48 0L48.75 1.5C39 6.5 34.25 14.375 33.75 19.125L34.25 19.375C35.375 18.75 36.625 18.5 38 18.5C42.25 18.5 46.5 21.875 46.5 27.5C46.5 32.625 42.625 37.25 37 37.25ZM11.125 37.25C4.25 37.25 0 32.125 0 24.75C0 14 8 4.375 22 0L22.75 1.5C13 6.5 8.25 14.375 7.75 19.125L8.25 19.375C9.375 18.75 10.625 18.5 12 18.5C16.25 18.5 20.5 21.875 20.5 27.5C20.5 32.625 16.625 37.25 11.125 37.25Z' fill='%232DD8C0'/%3E%3C/svg%3E");
+		width: 48px;
+		height: 38px;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		position: absolute;
+		top: 10px;
+		left: 0px;
+	}
+
+	p {
+		font-style: normal;
+		@apply text-[20px] md:text-[40px] leading-tight;
+	}
+
+	cite {
+		font-weight: 500;
+		text-transform: uppercase;
+		font-style: normal;
+		color: theme("colors.dark");
+		margin-top: 10px;
+		font-size: 13px;
+		letter-spacing: 2px;
+	}
+}
+
+.social-share {
+	a:hover {
+		svg {
+			circle {
+				fill: theme('colors.accent');
+			}
+		}
+	}
+}
+
+.post-content {
+	>* {
+		margin-top: 1.35rem;
+		margin-bottom: 1.35rem;
+	}
+	figure{
+		max-width: 100%;
+	}
+	.wp-caption-text {
+		font-size: 14px;
+		margin-top: 10px;
+	}
+
+}
+.wpny-pagination{
+	.page-numbers{
+	@apply w-10 border border-transparent hover:border-accent rounded-full h-10 flex items-center justify-center transition-all leading-none;
+		&.current{
+			@apply border-accent;
+		}
+	}
+}
+
+
+#video-popup-container {
+	display: none;
+	position: fixed;
+	z-index: 996;
+	width: 60%;
+	left: 50%;
+	margin-left: -30%;
+	top: 20%;
+	background-color: #fff;
+}
+@media only screen and (max-width: 768px) {
+	#video-popup-container {
+		
+		width: 80%;
+		left: 10%;
+		margin-left: 0%;
+		top: 20%;
+	
+	}
+}
+
+#video-popup-close {
+	cursor: pointer;
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	z-index: 998;
+	width: 25px;
+	height: 25px;
+	border-radius: 25px;
+	text-align: center;
+	font-size: 12px;
+	background-color: #000;
+	line-height: 25px;
+	color: #fff;
+}
+
+#video-popup-iframe-container {
+	position: absolute;
+	z-index: 997;
+	width: 100%;
+	padding-bottom: 56.25%;
+	border: 2px solid #000;
+	border-radius: 2px;
+	background-color: #000;
+}
+
+#video-popup-iframe {
+	z-index: 999;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: #000;
+}
+
+#video-popup-overlay {
+	display: none;
+	position: fixed;
+	z-index: 995;
+	top: 0;
+	background-color: #000;
+	opacity: 0.8;
+	width: 100%;
+	height: 100%;
+}
+.post-content{
+	p a{
+	@apply text-accent hover:text-dark transition-all;
+	}
+}

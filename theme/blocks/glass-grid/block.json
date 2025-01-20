@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/glass-grid",
+		"title"      : "Glass Grid",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "welcome-write-blog",
+		"apiVersion" : 2,
+		"keywords"   : ["glass"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "glass-grid.php"
+		},
+		"styles"  : [],
+		"supports": {
+			"spacing": {
+			"margin": false,
+			"padding": false
+				},
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

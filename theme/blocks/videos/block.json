@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/videos",
+		"title"      : "Videos Grid",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "video-script",
+		"category"   : "wpny",
+		"icon"       : "video-alt3",
+		"apiVersion" : 2,
+		"keywords"   : ["videos"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "render.php"
+		},
+		"styles"  : [],
+		"supports": {
+			"spacing": {
+			"margin": true,
+			"padding": true
+				},
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

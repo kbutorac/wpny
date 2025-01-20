@@ -1,0 +1,30 @@
+{
+		"name"       : "wpny/expandables",
+		"title"      : "Expandable Sections",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "plus-alt",
+		"apiVersion" : 2,
+		"keywords"   : ["faq", "expandables", "accordions"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "render.php"
+		},
+		"styles"  : [],
+		"supports": {
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

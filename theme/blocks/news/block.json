@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/news",
+		"title"      : "News",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "news-script",
+		"category"   : "wpny",
+		"icon"       : "welcome-write-blog",
+		"apiVersion" : 2,
+		"keywords"   : ["news", "posts", "blog"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "render.php"
+		},
+		"styles"  : [],
+		"supports": {
+			"spacing": {
+			"margin": true,
+			"padding": true
+				},
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}

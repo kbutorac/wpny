@@ -1,0 +1,34 @@
+{
+		"name"       : "wpny/industries-grid",
+		"title"      : "Industries Grid",
+		"description": "",
+		"style": "file:./style.css",
+		"script"     : "",
+		"category"   : "wpny",
+		"icon"       : "welcome-write-blog",
+		"apiVersion" : 2,
+		"keywords"   : ["industries"],
+		"acf"        : {
+	"mode"          : "auto",
+	"renderTemplate": "industries-grid.php"
+		},
+		"styles"  : [],
+		"supports": {
+			"spacing": {
+			"margin": false,
+			"padding": false
+				},
+				"align"       : false,
+				"anchor"      : true,
+				"alignContent": false,
+				"color"       : {
+						"text"      : false,
+						"background": false,
+						"link"      : false
+				},
+				"alignText" : false,
+				"fullHeight": false
+		},
+		"attributes": {
+		}
+}
