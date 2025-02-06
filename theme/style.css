@@ -2120,6 +2120,48 @@ ul.wp-block li strong{
   color: rgb(51 51 51 / var(--tw-text-opacity));
 }
 
+.editor p,
+	.editor ul,
+	.editor ol {
+  margin-bottom: 1.25rem;
+}
+
+.editor ul.wp-block li, .editor ul li {
+  margin-bottom: 0.5rem;
+  list-style-position: outside;
+  list-style-type: disc;
+}
+
+.editor ul.wp-block li *::marker, .editor ul li *::marker {
+  color: rgb(45 216 192 );
+}
+
+.editor ul.wp-block li::marker, .editor ul li::marker {
+  color: rgb(45 216 192 );
+}
+
+.editor ul.wp-block li, .editor ul li {
+  margin-left: 1em !important;
+}
+
+.editor ol.wp-block li, .editor ol li {
+  margin-bottom: 0.5rem;
+  list-style-position: outside;
+  list-style-type: decimal;
+}
+
+.editor ol.wp-block li *::marker, .editor ol li *::marker {
+  color: rgb(45 216 192 );
+}
+
+.editor ol.wp-block li::marker, .editor ol li::marker {
+  color: rgb(45 216 192 );
+}
+
+.editor ol.wp-block li, .editor ol li {
+  margin-left: 1em !important;
+}
+
 /**
  * This injects Tailwind's utility classes and any utility classes registered
  * by plugins, then adds custom utility classes.
@@ -3747,8 +3789,16 @@ ul.wp-block li strong{
   display: none;
 }
 
+.aspect-8\/9 {
+  aspect-ratio: 8 / 9;
+}
+
 .aspect-\[1\/1\] {
   aspect-ratio: 1/1;
+}
+
+.aspect-\[16\/9\] {
+  aspect-ratio: 16/9;
 }
 
 .aspect-\[3\/2\] {
@@ -5636,6 +5686,10 @@ ul.wp-block li strong{
   text-align: center;
 }
 
+.align-top {
+  vertical-align: top;
+}
+
 .align-middle {
   vertical-align: middle;
 }
@@ -5715,6 +5769,10 @@ ul.wp-block li strong{
   line-height: 1.75rem;
 }
 
+.text-\[11px\] {
+  font-size: 11px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -5753,6 +5811,10 @@ ul.wp-block li strong{
 
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+
+.tracking-\[1\.4px\] {
+  letter-spacing: 1.4px;
 }
 
 .text-\[\#07075F\] {

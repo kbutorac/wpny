@@ -59,7 +59,9 @@ $slides  = ( ! empty( get_field( 'slides' ) ) ) ? get_field( 'slides' ) : '';
 							<?php if ( $heading || $content || $image ) { ?>
 								<div class="col-span-12">
 										<?php if ( $image ) { ?>
-											<?php echo wp_get_attachment_image( $image, 'full', '', array( 'class' => 'w-full' ) ); ?>
+										<div class="aspect-8/9">
+											<?php echo wp_get_attachment_image( $image, 'timeline-slider', '', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
+										</div>
 										<?php } ?>
 										<?php if ( $heading ) { ?>
 										<h4 class="leading-none text-[42px] md:text-[80px] text-accent mt-3"><?php echo $heading; ?></h4>

@@ -9,36 +9,46 @@
 
 get_header();
 
-$gallery              = ( ! empty( get_field( 'gallery' ) ) ) ? get_field( 'gallery' ) : '';
-$description          = ( get_field( 'description' ) ) ? get_field( 'description' ) : '';
-$title_section        = ( get_field( 'title' ) ) ? get_field( 'title' ) : '';
-$key_benefits_content = ( get_field( 'key_benefits_content' ) ) ? get_field( 'key_benefits_content' ) : '';
-$key_benefits_bullets = ( ! empty( get_field( 'key_benefits_bullets' ) ) ) ? get_field( 'key_benefits_bullets' ) : '';
-
+$gallery                = ( ! empty( get_field( 'gallery' ) ) ) ? get_field( 'gallery' ) : '';
+$description            = ( get_field( 'description' ) ) ? get_field( 'description' ) : '';
+$title_section          = ( get_field( 'title' ) ) ? get_field( 'title' ) : '';
+$key_benefits_content   = ( get_field( 'key_benefits_content' ) ) ? get_field( 'key_benefits_content' ) : '';
+$key_benefits_bullets   = ( ! empty( get_field( 'key_benefits_bullets' ) ) ) ? get_field( 'key_benefits_bullets' ) : '';
+$project_video          = ( ! empty( get_field( 'project_video' ) ) ) ? get_field( 'project_video' ) : '';
+$quote                  = ( ! empty( get_field( 'quote' ) ) ) ? get_field( 'quote' ) : '';
+$quote_author           = ( ! empty( get_field( 'quote_author' ) ) ) ? get_field( 'quote_author' ) : '';
+$stats_counter          = ( ! empty( get_field( 'stats_counter' ) ) ) ? get_field( 'stats_counter' ) : '';
+$stats_title            = ( ! empty( get_field( 'stats_title' ) ) ) ? get_field( 'stats_title' ) : '';
 $related_systems        = ( ! empty( get_field( 'related_systems' ) ) ) ? get_field( 'related_systems' ) : '';
 $featured_installations = ( ! empty( get_field( 'featured_installations' ) ) ) ? get_field( 'featured_installations' ) : '';
 $applications           = ( ! empty( get_field( 'applications' ) ) ) ? get_field( 'applications' ) : '';
+$number                 = '';
 
-$counter_source = ( ! empty( get_field( 'counter_source' ) ) ) ? get_field( 'counter_source' ) : '';
-$number         = '';
+$video_id     = isset( $project_video['video_id'] ) ? $project_video['video_id'] : '';
+$poster_image = isset( $project_video['video_poster_image'] ) ? $project_video['video_poster_image'] : '';
+$video_type   = isset( $project_video['video_type'] ) ? $project_video['video_type'] : 'youtube';
 
-if ( ! empty( $counter_source ) ) {
-	$args = array(
-		'post_type'      => 'project',
-		'tax_query'      => array(
-			array(
-				'taxonomy' => 'building-types',
-				'field'    => 'term_id',
-				'terms'    => $counter_source,
-			),
+$current_post_id = get_the_ID(); // Get the current post ID
+$args            = array(
+	'post_type'      => 'project',
+	'meta_query'     => array(
+		array(
+			'key'     => 'industry_filter',
+			'value'   => sprintf( ':"%s";', $current_post_id ), // Match serialized value
+			'compare' => 'LIKE', // Serialized data requires LIKE comparison
 		),
-		'posts_per_page' => -1, // Get all posts
-	);
-	// Create a new WP_Query instance
-	$query = new WP_Query( $args );
-	// Get the count of projects
-	$number = $query->found_posts;
-}
+	),
+	'posts_per_page' => -1, // Get all matching projects
+);
+
+// Create a new WP_Query instance
+$query = new WP_Query( $args );
+
+// Get the count of matching projects
+$number = $query->found_posts;
+
+// Reset post data
+wp_reset_postdata();
 
 
 
@@ -46,7 +56,6 @@ if ( ! empty( $counter_source ) ) {
 
 <section id="primary" class="px-5">
 	<main id="main">
-
 		<div class="hero relative -mx-5 min-h-[300px] md:min-h-[480px] lg:min-h-[600px] flex flex-col overflow-hidden before:absolute before:left-0 before:right-0 before:top-0 before:z-[1] before:h-full before:w-full before:bg-gradient-to-t  before:from-black-rgba before:to-black-rgba">
 			<div class="container relative z-[2] my-auto pt-20 px-5 xl:px-0">
 				<?php echo do_shortcode( '[breadcrumbs]' ); ?>
@@ -83,21 +92,31 @@ if ( ! empty( $counter_source ) ) {
 									<h3 class="mb-4 font-semibold md:text-[30px] text-[24px]"><?php echo $title_section; ?></h3>
 								<?php } ?>
 								<?php if ( $description ) { ?>
-									<div><?php echo $description; ?></div>
+									<div class="editor"><?php echo $description; ?></div>
 								<?php } ?>
 							</div>
 							<?php } ?>
-							<?php if ($number){ ?>
-								<div class="col-span-12 md:col-start-9 md:col-end-13 bg-[#E4F9F8] flex flex-col items-center justify-center py-16 relative">
-									<h4 class="counter text-[40px] md:text-[60px] text-[#2DD8C0]" data-count="<?php echo $number; ?>">
-										<span class="number">0</span>
-									</h4>
-									<h3 class="text-[20px] md:text-[26px]"><?php echo get_the_title() . ' ' . __( 'Projects', 'wpny' ); ?></h3>
-									<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" width="210" height="174" viewBox="0 0 210 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path opacity="0.3" d="M129 128.754L209 172V45.2456L129 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
-										<path opacity="0.3" d="M1 128.754L82 172V45.2456L1 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
-										<path opacity="0.3" d="M64 128.754L145 172V45.2456L64 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
-									</svg>
+							<?php if ( $video_id || $poster_image ) { ?>
+								<?php include get_template_directory() . '/inc/video-popup.php'; ?>
+							<?php } ?>
+							<?php if ( $quote ) { ?>
+								<?php include get_template_directory() . '/inc/quote.php'; ?>
+							<?php } ?>
+							<?php if ( $number ) { ?>
+								<div class="col-span-12 md:col-start-9 md:col-end-13">
+									<div class="bg-light-blue py-10 px-6 md:py-16 md:px-10 relative overflow-hidden">
+										<div class="relative z-[1] flex flex-col items-center justify-center">
+											<h4 class="counter text-[40px] md:text-[60px] text-[#2DD8C0]" data-count="<?php echo $number; ?>">
+												<span class="number">0</span>
+											</h4>
+											<h3 class="text-[20px] md:text-[26px] text-center"><?php echo get_the_title() . ' ' . __( 'Projects', 'wpny' ); ?></h3>
+										</div>
+										<svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" width="210" height="174" viewBox="0 0 210 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path opacity="0.3" d="M129 128.754L209 172V45.2456L129 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
+											<path opacity="0.3" d="M1 128.754L82 172V45.2456L1 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
+											<path opacity="0.3" d="M64 128.754L145 172V45.2456L64 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
+										</svg>
+									</div>
 								</div>
 							<?php } ?>
 						</div>
@@ -105,16 +124,16 @@ if ( ! empty( $counter_source ) ) {
 				<?php } ?>
 
 				<?php if ( $featured_installations ) { ?>
-					<div class="my-14 md:my-28">
+					<div class="slider-container related-projects my-14 md:my-28">
 						<h4 class="text-black text-[20px] md:text-[30px] font-semibold mb-5 md:mb-8"><?php echo __( 'Featured Installations', 'wpny' ); ?></h4>
-						<div class="grid grid-cols-12 gap-y-10 md:gap-x-5">
+						<div class="md:gap-x-5 <?php echo ( 2 < count( $featured_installations ) ) ? 'projects-slider' : 'grid grid-cols-12 gap-y-10 '; ?>">
 							<?php foreach ( $featured_installations as $installation ) { ?>
 								<div class="col-span-12 md:col-span-6">
 									<?php
-									$location = ( get_field( 'project_location', $installation ) ) ? get_field( 'project_location', $installation ) : '';
+									$location = ( get_field( 'location', $installation ) ) ? get_field( 'location', $installation ) : '';
 									?>
 									<div>
-										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink($installation) ); ?>" rel="bookmark">
+										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink( $installation ) ); ?>" rel="bookmark">
 										<?php echo wp_get_attachment_image( get_post_thumbnail_id( $installation ), 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 										</a>
 										<header class="entry-header">
@@ -126,13 +145,18 @@ if ( ! empty( $counter_source ) ) {
 												<span><?php echo $location; ?></span>
 											</div>
 											<?php } ?>
-											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink($installation) ); ?>" rel="bookmark"><?php echo get_the_title($installation); ?></a></h4>
+											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink( $installation ) ); ?>" rel="bookmark"><?php echo get_the_title( $installation ); ?></a></h4>
 										</header><!-- .entry-header -->
 									</div><!-- #post-${ID} -->
 								</div>
 							<?php } ?>
 						</div>
-						<a class="btn btn--primary mt-10" href="<?php echo get_bloginfo( 'url' ) . '/projects'; ?>"><?php echo __( 'See more projects', 'wpny' ); ?></a>
+						<div class="flex  items-center  mt-5 md:mt-10 gap-y-10 <?php echo ( 2 < $featured_installations ) ? 'flex-col md:flex-row-reverse' : ''; ?>">
+							<?php if ( 2 < $featured_installations ) { ?>
+							<div class="mx-auto md:ml-auto md:mr-0 slider-arrows flex gap-x-5"></div>
+							<?php } ?>
+							<a class="btn btn--primary" href="<?php echo get_bloginfo( 'url' ) . '/projects'; ?>"><?php echo __( 'See more projects', 'wpny' ); ?></a>
+						</div>
 					</div>
 				<?php } ?>
 
@@ -190,12 +214,12 @@ if ( ! empty( $counter_source ) ) {
 				<?php } ?>
 
 				<?php if ( $related_systems ) { ?>
-					<div class="my-14 md:my-28">
+					<div class="related-sytems my-14 md:my-28">
 						<h4 class="text-black text-[20px] md:text-[30px] font-semibold mb-5 md:mb-8"><?php echo __( 'Related Glass & System', 'wpny' ); ?></h4>
 						<div class=" gap-x-5 <?php echo ( 4 < count( $related_systems ) ) ? 'flex glass-slider' : 'grid grid-cols-2 md:grid-cols-4 gap-y-10'; ?>">
 							<?php foreach ( $related_systems as $system ) { ?>
 								<div>
-									<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink($system) ); ?>" rel="bookmark">
+									<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink( $system ) ); ?>" rel="bookmark">
 										<?php echo get_the_post_thumbnail( $system, 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 									</a>
 									<h4 class="text-[18px] hover:text-accent no-underline leading-normal transition-all"><a href="<?php echo esc_url( get_permalink( $system ) ); ?>" rel="bookmark"><?php echo get_the_title( $system ); ?></a></h4>
@@ -218,16 +242,17 @@ if ( ! empty( $counter_source ) ) {
 							<?php foreach ( $applications as $application ) { ?> 
 								<div class="col-span-12 md:col-span-4">
 									<div>
-										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink($application ) ); ?>" rel="bookmark">
+										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink( $application ) ); ?>" rel="bookmark">
 										<?php echo wp_get_attachment_image( get_post_thumbnail_id( $application ), 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 										</a>
 										<header class="entry-header">
-											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink($application ) ); ?>" rel="bookmark"><?php echo get_the_title($application ); ?></a></h4>
+											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink( $application ) ); ?>" rel="bookmark"><?php echo get_the_title( $application ); ?></a></h4>
 										</header><!-- .entry-header -->
 										<?php
-										$short_description = (get_field('short_description', $application ) )? get_field('short_description', $application ) : '';
-										if ( $short_description ) { ?>
-										<div class="mt-2"><?=$short_description?></div>
+										$short_description = ( get_field( 'short_description', $application ) ) ? get_field( 'short_description', $application ) : '';
+										if ( $short_description ) {
+											?>
+										<div class="mt-2"><?php echo $short_description; ?></div>
 										<?php } ?>
 									</div><!-- #post-${ID} -->
 								</div>

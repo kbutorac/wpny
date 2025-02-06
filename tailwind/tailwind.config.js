@@ -30,6 +30,8 @@ module.exports = {
 		extend: {
 		  aspectRatio: {
 				'3/4': '3 / 4',
+				'16/9': '16 / 9',
+				'8/9': '8 / 9',
       },
 			animation: {
 				fadeIn: 'fadeIn .75s ease-in-out',

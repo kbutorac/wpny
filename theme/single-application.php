@@ -13,6 +13,8 @@ $gallery              = ( ! empty( get_field( 'gallery' ) ) ) ? get_field( 'gall
 $description          = ( get_field( 'description' ) ) ? get_field( 'description' ) : '';
 $title                = ( get_field( 'title' ) ) ? get_field( 'title' ) : '';
 $video                = ( ! empty( get_field( 'video' ) ) ) ? get_field( 'video' ) : '';
+$quote                = ( ! empty( get_field( 'quote' ) ) ) ? get_field( 'quote' ) : '';
+$quote_author         = ( ! empty( get_field( 'quote_author' ) ) ) ? get_field( 'quote_author' ) : '';
 $key_benefits_content = ( get_field( 'key_benefits_content' ) ) ? get_field( 'key_benefits_content' ) : '';
 $key_benefits_bullets = ( ! empty( get_field( 'key_benefits_bullets' ) ) ) ? get_field( 'key_benefits_bullets' ) : '';
 
@@ -20,6 +22,29 @@ $related_systems        = ( ! empty( get_field( 'related_systems' ) ) ) ? get_fi
 $featured_installations = ( ! empty( get_field( 'featured_installations' ) ) ) ? get_field( 'featured_installations' ) : '';
 
 $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries' ) : '';
+$number     = '';
+
+$current_post_id = get_the_ID(); // Get the current post ID
+$args            = array(
+	'post_type'      => 'project',
+	'meta_query'     => array(
+		array(
+			'key'     => 'application_filter',
+			'value'   => sprintf( ':"%s";', $current_post_id ), // Match serialized value
+			'compare' => 'LIKE', // Serialized data requires LIKE comparison
+		),
+	),
+	'posts_per_page' => -1, // Get all matching projects
+);
+
+// Create a new WP_Query instance
+$query = new WP_Query( $args );
+
+// Get the count of matching projects
+$number = $query->found_posts;
+
+// Reset post data
+wp_reset_postdata();
 
 ?>
 
@@ -62,37 +87,40 @@ $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries'
 					<div class="project-description my-10 md:my-16">
 						<div class="grid grid-cols-12 gap-y-6">
 						<?php if ( $description ) { ?>
-							<div class="col-span-12 <?php echo ( $video_id || $poster_image ) ? 'md:col-span-7' : ''; ?>">
+							<div class="col-span-12 md:col-span-7">
 								<?php if ( $title ) { ?>
 									<h3 class="mb-4 font-semibold md:text-[30px] text-[24px]"><?php echo $title; ?></h3>
 								<?php } ?>
 								<?php if ( $description ) { ?>
-									<div><?php echo $description; ?></div>
+									<div class="editor"><?php echo $description; ?></div>
 								<?php } ?>
 							</div>
 							<?php } ?>
 							<?php if ( $video_id || $poster_image ) { ?>
+								<?php include get_template_directory() . '/inc/video-popup.php'; ?>
+							<?php } ?>
+							<?php if ( $quote ) { ?>
+								<?php include get_template_directory() . '/inc/quote.php'; ?>
+							<?php } ?>
+							<?php if ( $number ) { ?>
 								<div class="col-span-12 md:col-start-9 md:col-end-13">
-							<div class="vpop relative group text-accent hover:text-dark before:absolute before:left-0 before:right-0 before:top-0 before:z-0 before:h-full before:w-full before:bg-dark before:opacity-30 hover:before:opacity-0 transition-all cursor-pointer" data-type="<?php echo $video_type; ?>" data-id="<?php echo $video_id; ?>" data-autoplay='true'>
-								<div class="aspect-[3/2]">
-								<?php echo wp_get_attachment_image( $poster_image, 'project-gallery', '', array( 'class' => 'mt-0 w-full h-full object-cover' ) ); ?>
-								</div>
-								<svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 transition-all group-hover:w-14 group-hover:h-14" width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<g clip-path="url(#clip0_1240_3030)">
-										<rect x="0.933594" y="0.599609" width="44.8" height="44.8" rx="22.4" fill="currentColor" />
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M23.3336 45.3996C29.2744 45.3996 34.972 43.0396 39.1728 38.8388C43.3736 34.638 45.7336 28.9405 45.7336 22.9996C45.7336 17.0588 43.3736 11.3612 39.1728 7.16042C34.972 2.9596 29.2744 0.599609 23.3336 0.599609C17.3927 0.599609 11.6952 2.9596 7.4944 7.16042C3.29359 11.3612 0.933594 17.0588 0.933594 22.9996C0.933594 28.9405 3.29359 34.638 7.4944 38.8388C11.6952 43.0396 17.3927 45.3996 23.3336 45.3996ZM22.0876 15.07C21.6659 14.7887 21.1758 14.6271 20.6694 14.6025C20.1631 14.5779 19.6596 14.6912 19.2127 14.9304C18.7657 15.1695 18.392 15.5255 18.1315 15.9604C17.8711 16.3953 17.7335 16.8927 17.7336 17.3996V28.5996C17.7335 29.1065 17.8711 29.604 18.1315 30.0388C18.392 30.4737 18.7657 30.8297 19.2127 31.0689C19.6596 31.308 20.1631 31.4213 20.6694 31.3967C21.1758 31.3721 21.6659 31.2105 22.0876 30.9292L30.4876 25.3292C30.8711 25.0735 31.1855 24.7271 31.403 24.3207C31.6204 23.9143 31.7342 23.4605 31.7342 22.9996C31.7342 22.5387 31.6204 22.0849 31.403 21.6785C31.1855 21.2721 30.8711 20.9257 30.4876 20.67L22.0876 15.07Z" fill="white" />
-									</g>
-									<defs>
-										<clipPath id="clip0_1240_3030">
-											<rect x="0.933594" y="0.599609" width="44.8" height="44.8" rx="22.4" fill="white" />
-										</clipPath>
-									</defs>
-								</svg>
-							</div>
+									<div class="bg-light-blue py-10 px-6 md:py-16 md:px-10 relative overflow-hidden">
+										<div class="relative z-[1] flex flex-col items-center justify-center">
+											<h4 class="counter text-[40px] md:text-[60px] text-[#2DD8C0]" data-count="<?php echo $number; ?>">
+												<span class="number">0</span>
+											</h4>
+											<h3 class="text-[20px] md:text-[26px] text-center"><?php echo get_the_title() . ' ' . __( 'Projects', 'wpny' ); ?></h3>
+										</div>
+										<svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" width="210" height="174" viewBox="0 0 210 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path opacity="0.3" d="M129 128.754L209 172V45.2456L129 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
+											<path opacity="0.3" d="M1 128.754L82 172V45.2456L1 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
+											<path opacity="0.3" d="M64 128.754L145 172V45.2456L64 2V128.754Z" stroke="#83E3DE" stroke-width="2"/>
+										</svg>
+									</div>
 								</div>
 							<?php } ?>
+							</div>
 						</div>
-					</div>
 				<?php } ?>
 
 
@@ -134,7 +162,7 @@ $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries'
 												</svg>
 												<div>
 												<?php if ( isset( $bullet['title'] ) ) { ?>
-													<div class="text-accent font-semibold text-[18px] md:text-[24px] mb-1"><?php echo $bullet['title']; ?></div>
+													<div class="text-accent font-semibold text-[18px] md:text-[24px] mb-1 leading-tight"><?php echo $bullet['title']; ?></div>
 												<?php } ?>
 												<?php if ( isset( $bullet['content'] ) ) { ?>
 												<div class="text-white text-[15px]"><?php echo $bullet['content']; ?></div>
@@ -150,15 +178,15 @@ $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries'
 				<?php } ?>
 
 				<?php if ( $related_systems ) { ?>
-					<div class="my-14 md:my-28">
+					<div class="related-sytems my-14 md:my-28">
 						<h4 class="text-black text-[20px] md:text-[30px] font-semibold mb-5 md:mb-8"><?php echo __( 'Related Glass & System', 'wpny' ); ?></h4>
 						<div class=" gap-x-5 <?php echo ( 4 < count( $related_systems ) ) ? 'flex glass-slider' : 'grid grid-cols-2 md:grid-cols-4 gap-y-10'; ?>">
 							<?php foreach ( $related_systems as $system ) { ?>
 								<div>
 									<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">
-										<?= get_the_post_thumbnail( $system  , 'post-size', ['class'=>'w-full h-full object-cover object-center'] )?>
+										<?php echo get_the_post_thumbnail( $system, 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 									</a>
-									<h4 class="text-[18px] hover:text-accent no-underline leading-normal transition-all"><a href="<?php echo esc_url( get_permalink($system) ); ?>" rel="bookmark"><?php echo get_the_title($system); ?></a></h4>
+									<h4 class="text-[18px] hover:text-accent no-underline leading-normal transition-all"><a href="<?php echo esc_url( get_permalink( $system ) ); ?>" rel="bookmark"><?php echo get_the_title( $system ); ?></a></h4>
 								</div>
 								<?php } ?>
 						</div>
@@ -171,16 +199,16 @@ $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries'
 				<?php } ?>
 
 				<?php if ( $featured_installations ) { ?>
-					<div class="my-14 md:my-28">
+					<div class="slider-container related-projects my-14 md:my-28">
 						<h4 class="text-black text-[20px] md:text-[30px] font-semibold mb-5 md:mb-8"><?php echo __( 'Featured Installations', 'wpny' ); ?></h4>
-						<div class="grid grid-cols-12 gap-y-10 md:gap-x-5">
+						<div class="md:gap-x-5 <?php echo ( 2 < count( $featured_installations ) ) ? 'projects-slider' : 'grid grid-cols-12 gap-y-10 '; ?>">
 							<?php foreach ( $featured_installations as $installation ) { ?>
 								<div class="col-span-12 md:col-span-6">
 									<?php
-									$location = ( get_field( 'project_location', $installation ) ) ? get_field( 'project_location', $installation ) : '';
+									$location = ( get_field( 'location', $installation ) ) ? get_field( 'location', $installation ) : '';
 									?>
 									<div>
-										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink($installation) ); ?>" rel="bookmark">
+										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink( $installation ) ); ?>" rel="bookmark">
 										<?php echo wp_get_attachment_image( get_post_thumbnail_id( $installation ), 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 										</a>
 										<header class="entry-header">
@@ -192,13 +220,18 @@ $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries'
 												<span><?php echo $location; ?></span>
 											</div>
 											<?php } ?>
-											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink($installation) ); ?>" rel="bookmark"><?php echo get_the_title($installation); ?></a></h4>
+											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink( $installation ) ); ?>" rel="bookmark"><?php echo get_the_title( $installation ); ?></a></h4>
 										</header><!-- .entry-header -->
 									</div><!-- #post-${ID} -->
 								</div>
 							<?php } ?>
 						</div>
-						<a class="btn btn--primary mt-10" href="<?php echo get_bloginfo( 'url' ) . '/projects'; ?>"><?php echo __( 'See more projects', 'wpny' ); ?></a>
+						<div class="flex  items-center  mt-5 md:mt-10 gap-y-10 <?php echo ( 2 < $featured_installations ) ? 'flex-col md:flex-row-reverse' : ''; ?>">
+							<?php if ( 2 < $featured_installations ) { ?>
+							<div class="mx-auto md:ml-auto md:mr-0 slider-arrows flex gap-x-5"></div>
+							<?php } ?>
+							<a class="btn btn--primary" href="<?php echo get_bloginfo( 'url' ) . '/projects'; ?>"><?php echo __( 'See more projects', 'wpny' ); ?></a>
+						</div>
 					</div>
 				<?php } ?>
 
@@ -210,16 +243,17 @@ $industries = ( ! empty( get_field( 'industries' ) ) ) ? get_field( 'industries'
 							<?php foreach ( $industries as $industry ) { ?> 
 								<div class="col-span-12 md:col-span-4">
 									<div>
-										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink($industry ) ); ?>" rel="bookmark">
+										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink( $industry ) ); ?>" rel="bookmark">
 										<?php echo wp_get_attachment_image( get_post_thumbnail_id( $industry ), 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 										</a>
 										<header class="entry-header">
-											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink($industry ) ); ?>" rel="bookmark"><?php echo get_the_title($industry ); ?></a></h4>
+											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink( $industry ) ); ?>" rel="bookmark"><?php echo get_the_title( $industry ); ?></a></h4>
 										</header><!-- .entry-header -->
 										<?php
-										$short_description = (get_field('short_description', $industry ) )? get_field('short_description', $industry ) : '';
-										if ( $short_description ) { ?>
-										<div class="mt-2"><?=$short_description?></div>
+										$short_description = ( get_field( 'short_description', $industry ) ) ? get_field( 'short_description', $industry ) : '';
+										if ( $short_description ) {
+											?>
+										<div class="mt-2"><?php echo $short_description; ?></div>
 										<?php } ?>
 									</div><!-- #post-${ID} -->
 								</div>

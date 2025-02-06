@@ -259,3 +259,27 @@
 	@apply text-accent hover:text-dark transition-all;
 	}
 }
+
+.editor {
+	p,
+	ul,
+	ol {
+		@apply mb-5;
+	}
+
+	ul.wp-block,
+	ul {
+		li {
+			@apply list-disc list-outside marker:text-accent mb-2;
+			margin-left: 1em !important;
+		}
+	}
+
+	ol.wp-block,
+	ol {
+		li {
+			@apply list-decimal list-outside marker:text-accent mb-2;
+			margin-left: 1em !important;
+		}
+	}
+}

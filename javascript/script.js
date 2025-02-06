@@ -85,14 +85,19 @@ const header = document.querySelector('.site-header');
 
 // Function to toggle the class
 function toggleHeaderClass() {
-	if (window.scrollY - 50 > 0) {
+	if (window.scrollY > 50) { // Removed unnecessary subtraction
 		header.classList.add('scroll');
 	} else {
 		header.classList.remove('scroll');
 	}
 }
+
 // Attach scroll event listener
 window.addEventListener('scroll', toggleHeaderClass);
+
+// Run on page load to check initial scroll position
+document.addEventListener("DOMContentLoaded", toggleHeaderClass);
+
 
 
 // Scroll page to IDs of sections
@@ -439,4 +444,3 @@ function closeVideoPopup() {
 // Attach click event to close button and overlay
 document.getElementById("video-popup-close").addEventListener("click", closeVideoPopup);
 document.getElementById("video-popup-overlay").addEventListener("click", closeVideoPopup);
-

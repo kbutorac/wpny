@@ -17,7 +17,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6655e5e835c6d",
@@ -38,26 +39,6 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
-        },
-        {
-            "key": "field_665725dbe350b",
-            "label": "Short Description",
-            "name": "short_description",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "Visible on archives or grid lists.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "rows": 2,
-            "placeholder": "",
-            "new_lines": ""
         },
         {
             "key": "field_6655e60a35c6e",
@@ -102,7 +83,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6655e64235c70",
@@ -205,7 +187,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6655e69535c75",
@@ -292,7 +275,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6655e7253ce10",
@@ -361,7 +345,7 @@
         },
         {
             "key": "field_6655e7603ce13",
-            "label": "Related Glass & System",
+            "label": "Related Systems",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -374,11 +358,12 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6655fc7b3ce7c",
-            "label": "Related Glass & System",
+            "label": "Related Systems",
             "name": "related_systems",
             "aria-label": "",
             "type": "relationship",
@@ -423,7 +408,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_665602b9585d2",
@@ -449,8 +435,8 @@
                 "taxonomy"
             ],
             "return_format": "id",
-            "min": 0,
-            "max": 2,
+            "min": "",
+            "max": "",
             "elements": "",
             "bidirectional": 0,
             "bidirectional_target": []
@@ -470,7 +456,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_66561b555998e",
@@ -606,7 +593,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_66561e3053396",
@@ -719,5 +707,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1716987382
+    "modified": 1737370492
 }

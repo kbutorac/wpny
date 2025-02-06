@@ -36,7 +36,7 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 					<?php echo do_shortcode( '[breadcrumbs]' ); ?>
 					<h1 class="mt-10 md:mt-8 md:col-span-9 text-[32px] md:text-[68px] lg:text-[80px]"><?php echo get_the_title(); ?></h1>
 					<?php if ( $description ) { ?>
-						<div class="mt-4 md:max-w-3xl"><?php echo $description; ?></div>
+						<div class="mt-4 md:max-w-3xl editor"><?php echo $description; ?></div>
 					<?php } ?>
 				</div>
 				<?php if ( $gallery ) { ?>
@@ -156,7 +156,7 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 										</h4>
 									<?php } ?>
 									<?php if ( $additional_content_description ) { ?>
-										<div class="text-black">
+										<div class="text-black editor">
 											<?php echo $additional_content_description; ?>
 										</div>
 									<?php } ?>
@@ -169,7 +169,7 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 				<?php } ?>
 
 				<?php if ( $related_systems ) { ?>
-					<div class="my-14 md:my-28">
+					<div class="related-sytems my-14 md:my-28">
 						<h4 class="text-black text-[20px] md:text-[30px] font-semibold mb-5 md:mb-8"><?php echo __( 'Related Glass & System', 'wpny' ); ?></h4>
 						<div class=" gap-x-5 <?=(4 < count($related_systems))? 'flex glass-slider' : 'grid grid-cols-2 md:grid-cols-4 gap-y-10'; ?>">
 							<?php foreach ( $related_systems as $system ) { ?>
@@ -185,21 +185,20 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 							<div class="mx-auto md:ml-auto md:mr-0 slider-arrows flex gap-x-5"></div>
 							<a class="btn btn--primary" href="<?php echo get_bloginfo( 'url' ) . '/glass'; ?>"><?php echo __( 'See all related systems', 'wpny' ); ?></a>
 						</div>
-					
 					</div>
 				<?php } ?>
 
 				<?php if ( $featured_installations ) { ?>
-					<div class="my-14 md:my-28">
+					<div class="slider-container related-projects my-14 md:my-28">
 						<h4 class="text-black text-[20px] md:text-[30px] font-semibold mb-5 md:mb-8"><?php echo __( 'Featured Installations', 'wpny' ); ?></h4>
-						<div class="grid grid-cols-12 gap-y-10 md:gap-x-5">
+						<div class="md:gap-x-5 <?php echo ( 2 < count( $featured_installations ) ) ? 'projects-slider' : 'grid grid-cols-12 gap-y-10 '; ?>">
 							<?php foreach ( $featured_installations as $installation ) { ?>
 								<div class="col-span-12 md:col-span-6">
 									<?php
-									$location = ( get_field( 'project_location', $installation ) ) ? get_field( 'project_location', $installation ) : '';
+									$location = ( get_field( 'location', $installation ) ) ? get_field( 'location', $installation ) : '';
 									?>
 									<div>
-										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink( $installation) ); ?>" rel="bookmark">
+										<a class="mb-4 flex w-full aspect-[3/2]" href="<?php echo esc_url( get_permalink($installation) ); ?>" rel="bookmark">
 										<?php echo wp_get_attachment_image( get_post_thumbnail_id( $installation ), 'post-size', array( 'class' => 'w-full h-full object-cover object-center' ) ); ?>
 										</a>
 										<header class="entry-header">
@@ -211,13 +210,18 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 												<span><?php echo $location; ?></span>
 											</div>
 											<?php } ?>
-											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink( $installation) ); ?>" rel="bookmark"><?php echo get_the_title( $installation); ?></a></h4>
+											<h4 class="hover:text-accent leading-normal transition-all text-[20px] md:text-[26px]"><a href="<?php echo esc_url( get_permalink($installation) ); ?>" rel="bookmark"><?php echo get_the_title($installation); ?></a></h4>
 										</header><!-- .entry-header -->
 									</div><!-- #post-${ID} -->
 								</div>
 							<?php } ?>
 						</div>
-						<a class="btn btn--primary mt-10" href="<?php echo get_bloginfo( 'url' ) . '/projects'; ?>"><?php echo __( 'See more projects', 'wpny' ); ?></a>
+						<div class="flex  items-center  mt-5 md:mt-10 gap-y-10 <?php echo ( 2 < $featured_installations ) ? 'flex-col md:flex-row-reverse' : ''; ?>">
+							<?php if ( 2 < $featured_installations ) { ?>
+							<div class="mx-auto md:ml-auto md:mr-0 slider-arrows flex gap-x-5"></div>
+							<?php } ?>
+							<a class="btn btn--primary" href="<?php echo get_bloginfo( 'url' ) . '/projects'; ?>"><?php echo __( 'See more projects', 'wpny' ); ?></a>
+						</div>
 					</div>
 				<?php } ?>
 				
@@ -231,11 +235,32 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 									$video_id     = ( isset( $video['video_id'] ) ) ? $video['video_id'] : '';
 									$poster_image = ( isset( $video['poster_image'] ) ) ? $video['poster_image'] : '';
 									$video_title  = ( isset( $video['video_title'] ) ) ? $video['video_title'] : '';
+
+									if ( ! $poster_image ) {
+										// Determine the source of the video and fetch the thumbnail
+										if ( $video_type === 'youtube' ) {
+												// YouTube thumbnail URL
+												$poster_image_url = 'https://img.youtube.com/vi/' . $video_id . '/hqdefault.jpg';
+										} elseif ( $video_type === 'vimeo' ) {
+												// Fetch Vimeo thumbnail using the API
+												$vimeo_data = wp_remote_get( "https://vimeo.com/api/v2/video/$video_id.json" );
+												if ( is_wp_error( $vimeo_data ) ) {
+														$poster_image_url = ''; // Default fallback if API call fails
+												} else {
+														$vimeo_data_body = wp_remote_retrieve_body( $vimeo_data );
+														$vimeo_data_array = json_decode( $vimeo_data_body, true );
+														$poster_image_url = $vimeo_data_array[0]['thumbnail_large'] ?? ''; // Use large thumbnail
+												}
+										}
+								} else {
+										// If poster image is uploaded, get its URL
+										$poster_image_url = wp_get_attachment_url( $poster_image );
+								}
 								?>
 								<div class="col-span-12 md:col-span-3">
 									<div class="vpop relative group cursor-pointer hover:text-accent" data-type="<?php echo $video_type; ?>" data-id="<?php echo $video_id; ?>" data-autoplay='true'>
-										<div class="aspect-[3/2]">
-										<?php echo wp_get_attachment_image( $poster_image, 'project-gallery', '', array( 'class' => 'mt-0 w-full h-full object-cover' ) ); ?>
+										<div class="aspect-[16/9]">
+										<img src="<?php echo esc_url( $poster_image_url ); ?>" alt="Video Thumbnail" class="mt-0 w-full h-full object-cover" />
 										</div>
 										<?php if ( $video_title ) { ?>
 											<h4 class="text-[18px] mt-4 group-hover:text-accent transition-all"><?php echo $video_title; ?></h4>

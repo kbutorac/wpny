@@ -140,6 +140,7 @@ add_image_size( 'image-32', 610, 406, true );
 add_image_size( 'team-size', 712, 712, true );
 add_image_size( 'post-large', 1280, 560, true );
 add_image_size( 'project-gallery', 1280, 640, true );
+add_image_size( 'timeline-slider', 400, 450, true );
 
 /**
  * Custom template tags for this theme.

@@ -198,6 +198,46 @@
             ]
         },
         {
+            "key": "field_67a4fe212ec7e",
+            "label": "Quote",
+            "name": "quote",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_67a4fe2e2ec7f",
+            "label": "Quote author",
+            "name": "quote_author",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6656fb94acac5",
             "label": "Key Benefits",
             "name": "",
@@ -303,7 +343,7 @@
         },
         {
             "key": "field_6656fb94acae0",
-            "label": "Related Glass & System",
+            "label": "Related Systems",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -321,7 +361,7 @@
         },
         {
             "key": "field_6656fb94acae3",
-            "label": "Related Glass & System",
+            "label": "Related Systems",
             "name": "related_systems",
             "aria-label": "",
             "type": "relationship",
@@ -393,8 +433,8 @@
                 "taxonomy"
             ],
             "return_format": "id",
-            "min": 0,
-            "max": 2,
+            "min": "",
+            "max": "",
             "elements": "",
             "bidirectional": 0,
             "bidirectional_target": []
@@ -466,5 +506,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1720609867
+    "modified": 1738866231
 }
