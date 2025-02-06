@@ -20,6 +20,9 @@ $block_class .= ! empty( $block['align'] ) ? ' align' . sanitize_key( $block['al
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?= esc_attr( $block_class )?> wp-block alignwide mt-10 mb-20 lg:mt-20 lg:mb-28 px-5">
 	<div class="container">
+			<div class="filters mb-10 flex gap-x-5 flex-wrap gap-y-5 flex-col md:flex-row items-center">
+				<div>	<?php echo do_shortcode( '[facetwp facet="application_tax"]' ); ?></div>
+			</div>
 		<?php
 		$query_args = array(
 			'post_type'      => 'application', // Change 'post' to your custom post type if needed
@@ -31,9 +34,7 @@ $block_class .= ! empty( $block['align'] ) ? ' align' . sanitize_key( $block['al
 		$query = new WP_Query( $query_args );
 		if ( $query->have_posts() ) {
 			 ?>
-			 <div class="filters mb-10 flex gap-x-5 flex-wrap gap-y-5 flex-col md:flex-row items-center">
-				<div>	<?php echo do_shortcode( '[facetwp facet="application_type"]' ); ?></div>
-			</div>
+		
 			<div class="grid md:grid-cols-3 gap-y-10 md:gap-y-20 md:gap-x-5">
 			<?php
 			while ( $query->have_posts() ) {
