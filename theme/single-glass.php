@@ -280,7 +280,7 @@ $downloads                      = ( ! empty( get_field( 'downloads' ) ) ) ? get_
 								<?php
 									$filename   = ( isset( $file['file']['filename'] ) ) ? $file['file']['filename'] : '';
 									$fileType   = pathinfo( $filename, PATHINFO_EXTENSION );
-									$link       = ( isset( $file['file']['link'] ) ) ? $file['file']['link'] : '';
+									$link       = ( isset( $file['file']['url'] ) ) ? $file['file']['url'] : '';
 									$file_image = ( isset( $file['file_image'] ) ) ? $file['file_image'] : '';
 									$file_name  = ( isset( $file['file_name'] ) ) ? $file['file_name'] : '';
 								?>
