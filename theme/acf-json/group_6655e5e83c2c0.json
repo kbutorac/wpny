@@ -696,6 +696,13 @@
                 "operator": "==",
                 "value": "glass"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "system"
+            }
         ]
     ],
     "menu_order": 0,
@@ -707,5 +714,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1737370492
+    "modified": 1738870305
 }

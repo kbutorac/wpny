@@ -11,7 +11,7 @@ $header_style = ( get_field( 'navigation_color' ) ) ? get_field( 'navigation_col
 $cta_primary   = ( ! empty( get_field( 'cta_primary', 'options' ) ) ) ? get_field( 'cta_primary', 'options' ) : '';
 $cta_secondary = ( ! empty( get_field( 'cta_secondary', 'options' ) ) ) ? get_field( 'cta_secondary', 'options' ) : '';
 
-if ( is_singular( 'post' ) || is_singular( 'project' ) || is_singular( 'glass' )) {
+if ( is_singular( 'post' ) || is_singular( 'project' ) || is_singular( 'glass' ) || is_singular( 'system' )) {
 	$header_style = 'dark';
 }
 
