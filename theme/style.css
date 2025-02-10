@@ -4,7 +4,7 @@ Theme URI: https: //whitepenny.com/
 Author: Whitepenny
 Author URI: https://whitepenny.com/
 Description: Whitepenny theme
-Version: 0.1.9
+Version: 0.1.10
 Tested up to: 6.2
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -1276,6 +1276,10 @@ ul.wp-block li strong{
   height: 12px;
 }
 
+.admin-bar .side-navbar{
+  padding-top: 46px;
+}
+
 #mobile-menu >li {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -1288,10 +1292,10 @@ ul.wp-block li strong{
 
 #mobile-menu >li >a {
   margin-bottom: 0.25rem;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.025em;
+  letter-spacing: 1.69px;
 }
 
 #mobile-menu .menu-item-has-children {
@@ -1304,7 +1308,7 @@ ul.wp-block li strong{
 
 #mobile-menu .menu-item-has-children a {
   flex: 1;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 #mobile-menu .menu-item-has-children li {
@@ -1346,7 +1350,7 @@ ul.wp-block li strong{
   width: 20px;
   height: 20px;
   display: flex;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='tve-dropdown-icon-up' viewBox='0 0 320 512'%3E%3Cpath fill='%23692A6D' d='M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z'%3E%3C/path%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.51172 7.1582L6.06232 6.63234L11.0117 1.88093L9.91051 0.73639L5.51172 4.96193L1.11294 0.736391L0.0117185 1.88093L4.9611 6.63234L5.51172 7.1582Z' fill='%231EBBAE'/%3E%3C/svg%3E%0A");
   background-size: 12px;
   background-repeat: no-repeat;
   background-position: center;
@@ -1354,6 +1358,93 @@ ul.wp-block li strong{
 }
 
 #mobile-menu .mobile-menu-toggle.open {
+  transform: scaleY(-1);
+}
+
+#mobile-menu-additional >li {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 209 209 / var(--tw-border-opacity));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#mobile-menu-additional >li:last-child {
+  border-style: none;
+}
+
+#mobile-menu-additional >li >a {
+  margin-bottom: 0.25rem;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#mobile-menu-additional .menu-item-has-children {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+#mobile-menu-additional .menu-item-has-children a {
+  flex: 1;
+  font-size: 16px;
+}
+
+#mobile-menu-additional .menu-item-has-children li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(245 246 255 / var(--tw-border-opacity));
+}
+
+#mobile-menu-additional .menu-item-has-children li:last-child {
+  border-style: none;
+}
+
+#mobile-menu-additional .menu-item-has-children >ul>li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+#mobile-menu-additional .menu-item-has-children >ul>li a {
+  font-size: 14px;
+}
+
+#mobile-menu-additional ul.sub-menu {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#mobile-menu-additional ul.sub-menu li:last-child {
+  border-style: none;
+}
+
+#mobile-menu-additional ul.sub-menu.open {
+  display: flex;
+}
+
+#mobile-menu-additional .mobile-menu-toggle {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.51172 7.1582L6.06232 6.63234L11.0117 1.88093L9.91051 0.73639L5.51172 4.96193L1.11294 0.736391L0.0117185 1.88093L4.9611 6.63234L5.51172 7.1582Z' fill='%231EBBAE'/%3E%3C/svg%3E%0A");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex: 0 0 auto;
+}
+
+#mobile-menu-additional .mobile-menu-toggle.open {
   transform: scaleY(-1);
 }
 
@@ -2209,10 +2300,6 @@ ul.wp-block li strong{
 
 .left-1\/2 {
   left: 50%;
-}
-
-.left-2 {
-  left: 0.5rem;
 }
 
 .left-5 {
@@ -3825,10 +3912,6 @@ ul.wp-block li strong{
   height: 1rem;
 }
 
-.h-6 {
-  height: 1.5rem;
-}
-
 .h-9 {
   height: 2.25rem;
 }
@@ -3877,10 +3960,6 @@ ul.wp-block li strong{
   width: 1rem;
 }
 
-.w-6 {
-  width: 1.5rem;
-}
-
 .w-9 {
   width: 2.25rem;
 }
@@ -3903,6 +3982,10 @@ ul.wp-block li strong{
 
 .\!max-w-full {
   max-width: 100% !important;
+}
+
+.max-w-\[140px\] {
+  max-width: 140px;
 }
 
 .max-w-\[744px\] {
@@ -4220,6 +4303,11 @@ ul.wp-block li strong{
   background-color: rgb(233 250 249 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#F8F8F8\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 248 248 / var(--tw-bg-opacity));
+}
+
 .bg-accent {
   --tw-bg-opacity: 1;
   background-color: rgb(45 216 192 / var(--tw-bg-opacity));
@@ -4242,11 +4330,6 @@ ul.wp-block li strong{
 .bg-light-blue {
   --tw-bg-opacity: 1;
   background-color: rgb(228 249 248 / var(--tw-bg-opacity));
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -5699,6 +5782,10 @@ ul.wp-block li strong{
   line-height: 2.5rem;
 }
 
+.text-\[11px\] {
+  font-size: 11px;
+}
+
 .text-\[12px\] {
   font-size: 12px;
 }
@@ -5769,10 +5856,6 @@ ul.wp-block li strong{
   line-height: 1.75rem;
 }
 
-.text-\[11px\] {
-  font-size: 11px;
-}
-
 .font-bold {
   font-weight: 700;
 }
@@ -5805,16 +5888,16 @@ ul.wp-block li strong{
   line-height: 1.25;
 }
 
+.tracking-\[1\.4px\] {
+  letter-spacing: 1.4px;
+}
+
 .tracking-\[3px\] {
   letter-spacing: 3px;
 }
 
 .tracking-widest {
   letter-spacing: 0.1em;
-}
-
-.tracking-\[1\.4px\] {
-  letter-spacing: 1.4px;
 }
 
 .text-\[\#07075F\] {

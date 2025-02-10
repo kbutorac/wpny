@@ -191,11 +191,17 @@ switch ( $header_style ) {
 
 <div class="navbar-menu relative z-50 hidden">
 	<div class="navbar-backdrop fixed inset-0 bg-dark opacity-50"></div>
-	<nav class="side-navbar fixed top-0 right-0 bottom-0 w-0 [&.active]:w-2/3 flex flex-col bg-white overflow-y-auto transition-all">
-		<div class="container mx-auto px-5">
-			<div class="flex items-center mt-0 py-8 justify-center bg-white -mx-5 px-5>
+	<nav class="side-navbar fixed top-0 right-0 bottom-0 w-0 [&.active]:w-2/3 flex flex-col bg-[#F8F8F8] overflow-y-auto transition-all">
+		<div class="container mx-auto px-8">
+			<div class="flex mt-0 py-8 justify-between items-center">
+			<button class="navbar-close">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+					<line y1="-1" x2="25.2616" y2="-1" transform="matrix(0.712544 -0.701627 0.712544 0.701627 1.43164 19.8164)" stroke="black" stroke-width="2"/>
+					<line y1="-1" x2="25.2616" y2="-1" transform="matrix(0.712544 0.701627 -0.712544 0.701627 0.339844 2.18164)" stroke="black" stroke-width="2"/>
+				</svg>
+			</button>
 			<a class="site-logo" href="<?php echo get_bloginfo( 'url' ); ?>">
-			<svg  class="text-accent" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				<svg class="text-accent max-w-[140px]" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 2934.8 385.9" style="enable-background:new 0 0 2934.8 385.9;" width="230px" height="31px" x="0px" y="0px"
 							style="enable-background:new 0 0 920 124;" xml:space="preserve">
 				<path fill="currentColor" d="M2515.9,385.8c0-126.7,0-253.4-0.2-380c0-4.6,1.2-5.8,5.8-5.7c42,0.2,83.9,0.1,125.9,0
@@ -297,13 +303,8 @@ switch ( $header_style ) {
 				<path fill="currentColor" d="M692.1,358.7c-0.2-0.2-0.2-0.4,0-0.6C692.3,358.3,692.3,358.5,692.1,358.7z"/>
 			</svg>
 			</a>
-				<button class="navbar-close absolute left-2">
-					<svg class="h-6 w-6 text-orange cursor-pointer hover:text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-					</svg>
-				</button>
 			</div>
-			<div class="bg-white -mx-5 px-5">
+			<div class="-mx-5 px-5">
 			<?php
 			if ( has_nav_menu( 'mobile-menu' ) ) {
 				wp_nav_menu(
@@ -311,6 +312,21 @@ switch ( $header_style ) {
 						'container'      => '',
 						'theme_location' => 'mobile-menu',
 						'menu_id'        => 'mobile-menu',
+						'items_wrap'     => '<ul id="%1$s" class="%2$s flex flex-col" aria-label="submenu">%3$s</ul>',
+						'walker'         => new Custom_Mobile_Walker_Nav_Menu(),
+					)
+				);
+			}
+			?>
+			</div>
+			<div class="-mx-5 mt-8 px-5">
+			<?php
+			if ( has_nav_menu( 'mobile-menu-additional' ) ) {
+				wp_nav_menu(
+					array(
+						'container'      => '',
+						'theme_location' => 'mobile-menu-additional',
+						'menu_id'        => 'mobile-menu-additional',
 						'items_wrap'     => '<ul id="%1$s" class="%2$s    flex flex-col" aria-label="submenu">%3$s</ul>',
 						'walker'         => new Custom_Mobile_Walker_Nav_Menu(),
 					)
@@ -319,18 +335,18 @@ switch ( $header_style ) {
 			?>
 			</div>
 			<?php if ( $cta_primary || $cta_secondary ) { ?>
-			<div class="flex flex-col items-center gap-y-4 mt-10">
+			<div class="flex flex-col gap-y-4 mt-10">
 				<?php if ( $cta_primary ) { ?>
 						<?php
 							$c1_target = ( isset( $cta_primary['target'] ) && ! empty( $cta_primary['target'] ) ) ? 'target="' . $cta_primary['target'] . '"' : '';
 							$c1__link  = ( isset( $cta_primary['url'] ) ) ? $cta_primary['url'] : '';
 							$c1__title = ( isset( $cta_primary['title'] ) ) ? $cta_primary['title'] : '';
 						?>
-						<a class="flex text-[12px] tracking-widest items-center gap-x-3 uppercase font-semibold hover:text-accent group-[.site-header--light]:text-white group-[.site-header--light.scroll]:text-dark" href="<?php echo $c1__link; ?>" <?php echo $c1_target; ?>>
-							<svg xmlns="http://www.w3.org/2000/svg" width="11" height="13" viewBox="0 0 11 13" fill="none">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M5.13896 1C3.55108 1 2.26182 2.28066 2.26182 3.85849V5.38915H1.83997C1.18349 5.38915 0.645508 5.92453 0.645508 6.57547V11.0377C0.645508 11.691 1.18586 12.2241 1.83997 12.2241H8.4972C9.15368 12.2241 9.68929 11.6887 9.68929 11.0377V6.57547C9.68929 5.92217 9.15131 5.38915 8.4972 5.38915H8.01846V3.85849C8.01846 2.28066 6.7292 1 5.13896 1ZM5.13896 1.66038C6.37134 1.66038 7.35487 2.63443 7.35487 3.85849V5.38915H2.92541V3.85849C2.92541 2.63443 3.90658 1.66038 5.13896 1.66038ZM1.83997 6.04953H8.4972C8.79818 6.04953 9.0257 6.2783 9.0257 6.57547V11.0377C9.0257 11.3349 8.79581 11.5637 8.4972 11.5637H1.83997C1.53898 11.5637 1.3091 11.3349 1.3091 11.0377V6.57547C1.3091 6.2783 1.53898 6.04953 1.83997 6.04953Z" fill="currentColor" stroke="currentColor"/>
+						<a class="flex text-[11px] tracking-widest items-center gap-x-3 uppercase font-semibold hover:text-accent group-[.site-header--light]:text-white group-[.site-header--light.scroll]:text-dark" href="<?php echo $c1__link; ?>" <?php echo $c1_target; ?>>
+							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14" fill="none">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M6.34648 0.947266C4.59072 0.947266 3.16514 2.37022 3.16514 4.12337V5.8241H2.69868C1.97279 5.8241 1.37793 6.41896 1.37793 7.14223V12.1003C1.37793 12.8262 1.97541 13.4184 2.69868 13.4184H10.0598C10.7857 13.4184 11.3779 12.8236 11.3779 12.1003V7.14223C11.3779 6.41634 10.7831 5.8241 10.0598 5.8241H9.53045V4.12337C9.53045 2.37022 8.10487 0.947266 6.34648 0.947266ZM6.34648 1.68102C7.70917 1.68102 8.79669 2.7633 8.79669 4.12337V5.8241H3.89889V4.12337C3.89889 2.7633 4.9838 1.68102 6.34648 1.68102ZM2.69868 6.55785H10.0598C10.3926 6.55785 10.6442 6.81205 10.6442 7.14223V12.1003C10.6442 12.4305 10.39 12.6847 10.0598 12.6847H2.69868C2.36588 12.6847 2.11168 12.4305 2.11168 12.1003V7.14223C2.11168 6.81205 2.36588 6.55785 2.69868 6.55785Z" fill="#1EBBAE" stroke="#1EBBAE"/>
 							</svg>
-							<span><?php echo $c1__title; ?></span>
+							<span class="leading-none mt-0.5"><?php echo $c1__title; ?></span>
 						</a>
 					<?php } ?>
 					<?php if ( $cta_secondary ) { ?>
@@ -339,11 +355,11 @@ switch ( $header_style ) {
 							$c2__link  = ( isset( $cta_secondary['url'] ) ) ? $cta_secondary['url'] : '';
 							$c2__title = ( isset( $cta_secondary['title'] ) ) ? $cta_secondary['title'] : '';
 						?>
-						<a class="flex text-[12px] tracking-widest items-center gap-x-3 uppercase font-semibold hover:text-accent group-[.site-header--light]:text-white group-[.site-header--light.scroll]:text-dark" href="<?php echo $c1__link; ?>" <?php echo $c2_target; ?>>
-							<svg xmlns="http://www.w3.org/2000/svg" width="11" height="14" viewBox="0 0 11 14" fill="none">
-							<path d="M1.44765 7.70799L1.47278 7.7441C1.50348 7.78993 1.53558 7.83438 1.56768 7.88299L5.20473 13.083C5.38337 13.3385 5.73787 13.4024 5.99606 13.2233C6.05189 13.1844 6.09934 13.1372 6.13702 13.083L9.7657 7.88715C9.80059 7.83854 9.83409 7.79132 9.86758 7.74827L9.88991 7.71493C11.3958 5.39549 10.7273 2.30104 8.39797 0.801044C6.06724 -0.697567 2.95774 -0.0322893 1.45045 2.28577C0.377195 3.93716 0.377195 6.06215 1.45045 7.71354L1.44765 7.7066V7.70799ZM5.67088 2.92049C6.82647 2.92049 7.76434 3.85382 7.76434 5.00382C7.76434 6.15382 6.82647 7.08715 5.67088 7.08715C4.51528 7.08715 3.57741 6.15382 3.57741 5.00382C3.57741 3.85382 4.51528 2.92049 5.67088 2.92049Z" fill="currentColor"/>
+						<a class="flex text-[11px] tracking-widest items-center gap-x-3 uppercase font-semibold hover:text-accent group-[.site-header--light]:text-white group-[.site-header--light.scroll]:text-dark" href="<?php echo $c1__link; ?>" <?php echo $c2_target; ?>>
+							<svg xmlns="http://www.w3.org/2000/svg" width="11" height="15" viewBox="0 0 11 15" fill="none">
+							<path d="M1.17619 8.65525L1.20119 8.69136C1.23175 8.7372 1.26369 8.78164 1.29564 8.83025L4.91508 14.0303C5.09286 14.2858 5.44564 14.3497 5.70258 14.1705C5.75814 14.1316 5.80536 14.0844 5.84286 14.0303L9.45397 8.83442C9.48869 8.78581 9.52203 8.73859 9.55536 8.69553L9.57758 8.6622C11.0762 6.34275 10.4109 3.24831 8.09286 1.74831C5.77341 0.249699 2.67897 0.914976 1.17897 3.23303C0.110916 4.88442 0.110916 7.00942 1.17897 8.66081L1.17619 8.65386V8.65525ZM5.37897 3.86775C6.52897 3.86775 7.4623 4.80109 7.4623 5.95109C7.4623 7.10109 6.52897 8.03442 5.37897 8.03442C4.22897 8.03442 3.29564 7.10109 3.29564 5.95109C3.29564 4.80109 4.22897 3.86775 5.37897 3.86775Z" fill="#3AC3B8"/>
 							</svg>
-							<span><?php echo $c2__title; ?></span>
+							<span class="leading-none mt-0.5"><?php echo $c2__title; ?></span>
 						</a>
 					<?php } ?>
 			</div>
