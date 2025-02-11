@@ -17,16 +17,17 @@ $block_class .= ! empty( $block['className'] ) ? ' ' . $block['className'] : '';
 $block_class .= ! empty( $block['align'] ) ? ' align' . sanitize_key( $block['align'] ) : '';
 
 // Get our data.
-$heading       = get_field( 'heading' ) ? get_field( 'heading' ) : get_the_title();
-$content       = get_field( 'content' ) ? get_field( 'content' ) : '';
-$hero_bg_image = get_field( 'hero_bg_image' ) ? get_field( 'hero_bg_image' ) : '';
-$text_color    = ( get_field( 'dark_text' ) ) ? 'text-dark' : 'text-white';
+$heading          = get_field( 'heading' ) ? get_field( 'heading' ) : get_the_title();
+$content          = get_field( 'content' ) ? get_field( 'content' ) : '';
+$hero_bg_image    = get_field( 'hero_bg_image' ) ? get_field( 'hero_bg_image' ) : '';
+$right_side_image = get_field( 'right_side_image' ) ? get_field( 'right_side_image' ) : '';
+$text_color       = ( get_field( 'dark_text' ) ) ? 'text-dark' : 'text-white';
 
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_class ); ?> relative px-5 pt-36 pb-16 md:pt-56 md:pb-32 bg-dark">
 	<div class="container relative z-[1]">
 		<div class="grid grid-cols-12 gap-y-10 items-center">
-			<div class="col-span-12">			
+			<div class="col-span-12 <?php echo ( $right_side_image ) ? 'md:col-span-7' : ''; ?>">
 			<?php if ( $heading ) { ?>
 				<h1 class="<?php echo $text_color; ?> leading-none text-[40px] md:text-[60px] lg:text-[80px]"><?php echo $heading; ?></h1>
 			<?php } ?>
@@ -40,6 +41,11 @@ $text_color    = ( get_field( 'dark_text' ) ) ? 'text-dark' : 'text-white';
 				</div>
 			<?php } ?>
 			</div>
+			<?php if ( $right_side_image ) { ?>
+				<div class="col-span-12 md:col-span-5 flex justify-center md:justify-end">
+				<?php echo wp_get_attachment_image( $right_side_image, 'full', '', array( 'class' => '' ) ); ?>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 	<?php if ( $hero_bg_image ) { ?>
